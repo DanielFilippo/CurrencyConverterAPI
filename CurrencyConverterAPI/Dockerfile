@@ -21,4 +21,4 @@ COPY --from=publish /app/publish .
 RUN useradd -m myappuser
 USER myappuser
 
-CMD ASPNETCORE_URLS="http://*:$PORT" dotnet .CurrencyConverterAPI.dll	
+CMD ASPNETCORE_URLS="http://*:$PORT" dotnet ./CurrencyConverterAPI.dll	

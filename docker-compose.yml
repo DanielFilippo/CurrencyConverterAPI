@@ -11,3 +11,7 @@ services:
     build:
       context: .
       dockerfile: CurrencyConverterAPI/Dockerfile
+
+networks:
+  default:
+    driver: bridge

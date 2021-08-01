@@ -9,12 +9,11 @@ namespace CurrencyConverterAPI.Data
 
         public ConvertTransactionContext(DbContextOptions<ConvertTransactionContext> options) : base(options)
         {
-            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=CurrencyConverter.db");
+            optionsBuilder.UseInMemoryDatabase("Data Source=:memory:");
         }
     }
 }

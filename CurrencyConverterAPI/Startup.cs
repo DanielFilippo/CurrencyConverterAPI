@@ -30,7 +30,7 @@ namespace CurrencyConverterAPI
         {
             services.AddDbContext<ConvertTransactionContext>(
                 options => {
-                    options.UseSqlite(Configuration["ConnectionStrings:SqliteConnectionString"]);
+                    options.UseInMemoryDatabase(Configuration["ConnectionStrings:SqliteConnectionString"]);
                 });
 
             services.AddRouting(options => options.LowercaseUrls = true);
