@@ -30,6 +30,6 @@ jobs:
         CONTAINER_NAME: ${{ 'currencyconverterapi' }}
       run: |
         docker login --username=daniel.filippolima@gmail.com --password=$HEROKU_API_KEY registry.heroku.com
-        docker tag $CONTAINER_NAME registry.heroku.com/my-app-12355/web
-        docker push registry.heroku.com/$CONTAINER_NAME/web
-        heroku container:release web --app=$CONTAINER_NAME
+        docker tag $CONTAINER_NAME registry.heroku.com/$APP_NAME/web
+        docker push registry.heroku.com/$APP_NAME/web
+        heroku container:release web --app=$APP_NAME
