@@ -33,6 +33,7 @@ namespace CurrencyConverterAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<TransactionCreateResult>> CreateTransaction([FromBody] TransactionCreateInputParams input)
         {
+            _logger.LogInformation("Testing CD");
             _logger.LogInformation(
                 "New request received on CreateTransaction |" +
                $"ClienteId : {input.ClientId}" +
