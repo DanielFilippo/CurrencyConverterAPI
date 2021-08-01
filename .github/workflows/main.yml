@@ -38,7 +38,6 @@ jobs:
     - name: Push to Docker Hub
       uses: docker/build-push-action@v2
       with:
-        context: ./CurrencyConverterAPI
         file: ./CurrencyConverterAPI/Dockerfile
         push: true
         tags: 'daniscuba/currencyconverterapi:latest'
