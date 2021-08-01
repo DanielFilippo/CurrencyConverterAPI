@@ -29,5 +29,5 @@ jobs:
         APP_NAME: ${{ 'dfl-currency-converter' }}
         CONTAINER_NAME: ${{ 'currencyconverterapi' }}
       run: |
-        echo docker login --username=daniel.filippolima@gmail.com --password=$HEROKU_API_KEY registry.heroku.com
-        docker tag $CONTAINER_NAME registry.heroku.com/$APP_NAME/web
+        docker login --username=daniel.filippolima@gmail.com --password=$HEROKU_API_KEY registry.heroku.com
+        echo docker image -ls
