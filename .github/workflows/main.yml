@@ -27,7 +27,10 @@ jobs:
       env: 
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         APP_NAME: ${{ 'dfl-currency-converter' }}
+        DOCKER_IMAGE: ${{ 'daniscuba/currencyconverterapi' }}
       run: |
         docker login --username=daniel.filippolima@gmail.com --password=$HEROKU_API_KEY registry.heroku.com
-        docker pull daniscuba/currencyconverterapi
-        docker tag daniscuba/currencyconverterapi registry.heroku.com/dfl-currency-converter/web
+        docker pull $DOCKER_IMAGE
+        docker tag $DOCKER_IMAGE registry.heroku.com/$APP_NAME/web
+        docker push registry.heroku.com/$APP_NAME/web
+        heroku container:release web --app=$APP_NAME
