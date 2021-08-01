@@ -36,8 +36,8 @@ namespace CurrencyConverterAPI.Controllers
             _logger.LogInformation(
                 "New request received on CreateTransaction |" +
                $"ClienteId : {input.ClientId}" +
-               $"MoedaDe: {input.CurrencyTo}|" +
-               $"MoedaPara: {input.CurrencyFrom}|" +
+               $"MoedaDe: {input.CurrencyFrom}|" +
+               $"MoedaPara: {input.CurrencyTo}|" +
                $"Valor : {input.Value}|");
 
             if (input.ClientId <= 0)
@@ -46,10 +46,10 @@ namespace CurrencyConverterAPI.Controllers
             if (input.Value <= 0)
                 return GenerateResultParamValuesInvalid("value");
 
-            if (string.IsNullOrEmpty(input.CurrencyTo))
+            if (string.IsNullOrEmpty(input.CurrencyFrom))
                 return GenerateResultParamStringInvalid("origin");
 
-            if (string.IsNullOrEmpty(input.CurrencyTo))
+            if (string.IsNullOrEmpty(input.CurrencyFrom))
                 return GenerateResultParamStringInvalid("destination");
 
             TransactionCreateResult result = await _repository.insertConversionTransactionAsync(input);
@@ -62,7 +62,7 @@ namespace CurrencyConverterAPI.Controllers
             if (result.ErrorDetails != null)
                 return GenerateCreateResultError(result.ErrorDetails.Message);
 
-            _logger.LogInformation($"Converted value {result.ValueFrom}");
+            _logger.LogInformation($"Converted value {result.ValueTo}");
 
             return CreatedAtAction(nameof(CreateTransaction), result);
         }

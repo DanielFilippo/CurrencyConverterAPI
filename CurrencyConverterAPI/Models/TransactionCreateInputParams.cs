@@ -7,10 +7,10 @@ namespace CurrencyConverterAPI.Models
         [Required]
         public int ClientId { get; set; }
         [Required]
-        public string CurrencyTo { get; set; }
+        public string CurrencyFrom { get; set; }
         [Required]
         public double Value { get; set; }
         [Required]
-        public string CurrencyFrom { get; set; }
+        public string CurrencyTo { get; set; }
     }
 }

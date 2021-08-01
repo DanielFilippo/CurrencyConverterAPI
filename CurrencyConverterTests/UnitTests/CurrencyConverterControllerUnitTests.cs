@@ -46,9 +46,9 @@ namespace UnitTests.CurrencyConverterUnitTests
         public async Task InsertConversionTransaction_WithInsertUser_ReturnsInvalidUserId()
         {
             TransactionCreateInputParams input = new TransactionCreateInputParams();
-            input.CurrencyTo = "EUR";
+            input.CurrencyFrom = "EUR";
             input.Value = 5;
-            input.CurrencyFrom = "USD";
+            input.CurrencyTo = "USD";
             var result = await _controller.CreateTransaction(input);
 
             var okResult = result.Result.Should().BeOfType<BadRequestObjectResult>().Subject;
@@ -64,9 +64,9 @@ namespace UnitTests.CurrencyConverterUnitTests
         {
             TransactionCreateInputParams input = new TransactionCreateInputParams();
             input.ClientId = 2;
-            input.CurrencyTo = "EUR";
+            input.CurrencyFrom = "EUR";
             input.Value = -1;
-            input.CurrencyFrom = "USD";
+            input.CurrencyTo = "USD";
             var result = await _controller.CreateTransaction(input);
 
             var okResult = result.Result.Should().BeOfType<BadRequestObjectResult>().Subject;
@@ -82,7 +82,7 @@ namespace UnitTests.CurrencyConverterUnitTests
             TransactionCreateInputParams input = new TransactionCreateInputParams();
             input.ClientId = 2;
             input.Value = 5;
-            input.CurrencyFrom = "USD";
+            input.CurrencyTo = "USD";
             var result = await _controller.CreateTransaction(input);
 
             var okResult = result.Result.Should().BeOfType<BadRequestObjectResult>().Subject;
@@ -100,8 +100,8 @@ namespace UnitTests.CurrencyConverterUnitTests
 
             UserDetails details = new UserDetails()
             {
-                CurrencyTo = "BRL",
-                CurrencyFrom = "USD",
+                CurrencyFrom = "BRL",
+                CurrencyTo = "USD",
                 Value = 10,
                 ConversionRate = 5.25555,
                 ConvertedValue = 5.45,

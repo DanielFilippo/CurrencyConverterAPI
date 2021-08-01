@@ -30,14 +30,14 @@ namespace CurrencyConverterAPI.Repositories
             TransactionCreateResult result = new TransactionCreateResult();
             string baseUrl = _configuration.GetSection("AppSettings").GetSection("BASE_URL").Value;
             string accessKey = _configuration.GetSection("AppSettings").GetSection("ACCESS_KEY").Value;
-            string symbols = input.CurrencyTo + "," + input.CurrencyFrom;
+            string symbols = input.CurrencyFrom + "," + input.CurrencyTo;
 
             ExchangeRate recoveryRates = getRates(baseUrl, accessKey, symbols);
 
             if (recoveryRates.rates != null && recoveryRates.rates.Count < 2)
             {
                 string message = "Moeda inválida para conversão: ";
-                string messageRates = recoveryRates.rates.First().Key != input.CurrencyTo ? input.CurrencyTo : input.CurrencyFrom;
+                string messageRates = recoveryRates.rates.First().Key != input.CurrencyFrom ? input.CurrencyFrom : input.CurrencyTo;
                 result.ErrorDetails = getError(1005, message + messageRates);
                 return result;
             }
@@ -46,7 +46,7 @@ namespace CurrencyConverterAPI.Repositories
             {
                 if (recoveryRates.error.code == 202)
                 {
-                    string message = "Invalid Currencies for Conversion: " + input.CurrencyTo + ", " + input.CurrencyFrom;
+                    string message = "Invalid Currencies for Conversion: " + input.CurrencyFrom + ", " + input.CurrencyTo;
                     result.ErrorDetails = getError(1005, message);
                     return result;
                 }
@@ -66,18 +66,18 @@ namespace CurrencyConverterAPI.Repositories
 
             CalcConversion calcConversion = new CalcConversion();
             calcConversion.value = input.Value;
-            calcConversion.valueCurrencyTo = recoveryRates.rates[input.CurrencyTo];
             calcConversion.valueCurrencyFrom = recoveryRates.rates[input.CurrencyFrom];
+            calcConversion.valueCurrencyTo = recoveryRates.rates[input.CurrencyTo];
 
-            result.ValueFrom = calcConversion.calculateConversion(calcConversion);
+            result.ValueTo = calcConversion.calculateConversion(calcConversion);
 
             result.ConversionRate = calcConversion.valueConversionRate;
 
             result.TransactionId = Guid.NewGuid();
             result.UserId = input.ClientId;
-            result.CurrencyTo = input.CurrencyTo;
-            result.ValueTo = input.Value;
             result.CurrencyFrom = input.CurrencyFrom;
+            result.ValueFrom = input.Value;
+            result.CurrencyTo = input.CurrencyTo;
 
             result.DateHourUTC = DateTime.UtcNow;
 
@@ -107,9 +107,9 @@ namespace CurrencyConverterAPI.Repositories
             {
                 details = new()
                 {
-                    CurrencyTo = item.CurrencyTo,
-                    Value = item.Value,
                     CurrencyFrom = item.CurrencyFrom,
+                    Value = item.Value,
+                    CurrencyTo = item.CurrencyTo,
                     ConversionRate = item.ConversionRate,
                     ConvertedValue = item.Value * item.QuoteRate,
                     DateHourUtc = item.DateHourUTC
@@ -125,9 +125,9 @@ namespace CurrencyConverterAPI.Repositories
         {
             ConvertTransaction convertTransaction = new ConvertTransaction();
             convertTransaction.UserId = transaction.UserId;
-            convertTransaction.CurrencyTo = transaction.CurrencyTo;
-            convertTransaction.Value = transaction.ValueTo;
             convertTransaction.CurrencyFrom = transaction.CurrencyFrom;
+            convertTransaction.Value = transaction.ValueFrom;
+            convertTransaction.CurrencyTo = transaction.CurrencyTo;
             convertTransaction.ConversionRate = transaction.ConversionRate;
             convertTransaction.QuoteRate = quotaRate;
             convertTransaction.DateHourUTC = transaction.DateHourUTC;

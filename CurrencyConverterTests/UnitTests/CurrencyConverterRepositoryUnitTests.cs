@@ -48,8 +48,8 @@ namespace CurrencyConverterUnitTests.UnitTests
         {
             TransactionCreateInputParams input = new TransactionCreateInputParams();
             input.ClientId = 5;
-            input.CurrencyTo = "EUR";
-            input.CurrencyFrom = "USD";
+            input.CurrencyFrom = "EUR";
+            input.CurrencyTo = "USD";
             input.Value = 8;
 
             TransactionCreateResult result;
@@ -64,7 +64,7 @@ namespace CurrencyConverterUnitTests.UnitTests
             var resultOk = result.Should().BeOfType<TransactionCreateResult>().Subject;
 
             resultOk.TransactionId.Should().NotBeEmpty();
-            resultOk.ValueFrom.Should().BePositive();
+            resultOk.ValueTo.Should().BePositive();
         }
 
         [Fact]
@@ -72,8 +72,8 @@ namespace CurrencyConverterUnitTests.UnitTests
         {
             TransactionCreateInputParams input = new TransactionCreateInputParams();
             input.ClientId = 5;
-            input.CurrencyTo = "EUR";
-            input.CurrencyFrom = "TRA";
+            input.CurrencyFrom = "EUR";
+            input.CurrencyTo = "TRA";
             input.Value = 8;
 
             TransactionCreateResult result;
@@ -95,8 +95,8 @@ namespace CurrencyConverterUnitTests.UnitTests
         {
             TransactionCreateInputParams input = new TransactionCreateInputParams();
             input.ClientId = 5;
-            input.CurrencyTo = "ASD";
-            input.CurrencyFrom = "TRA";
+            input.CurrencyFrom = "ASD";
+            input.CurrencyTo = "TRA";
             input.Value = 8;
 
             TransactionCreateResult result;
@@ -133,8 +133,8 @@ namespace CurrencyConverterUnitTests.UnitTests
             TransactionUserResult result;
             ConvertTransaction transaction = new ConvertTransaction();
             transaction.UserId = 1;
-            transaction.CurrencyTo = "EUR";
-            transaction.CurrencyFrom = "USD";
+            transaction.CurrencyFrom = "EUR";
+            transaction.CurrencyTo = "USD";
             transaction.Value = 5;
             transaction.ConversionRate = 1.21387;
             transaction.QuoteRate = 1.21387;

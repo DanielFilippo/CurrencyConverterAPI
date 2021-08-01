@@ -12,9 +12,9 @@ namespace CurrencyConverterAPI.Models
 
     public class UserDetails
     {
-        public string CurrencyTo { get; set; }
-        public double Value { get; set; }
         public string CurrencyFrom { get; set; }
+        public double Value { get; set; }
+        public string CurrencyTo{ get; set; }
         public double ConversionRate { get; set; }
         public double ConvertedValue { get; set; }
         public DateTime DateHourUtc { get; set; }

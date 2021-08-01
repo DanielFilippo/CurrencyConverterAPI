@@ -24,8 +24,8 @@ namespace CurrencyConverterUnitTests.IntegrationTests
         {
             TransactionCreateInputParams transaction = new TransactionCreateInputParams();
             transaction.ClientId = 1;
-            transaction.CurrencyTo = "BRL";
-            transaction.CurrencyFrom = "EUR";
+            transaction.CurrencyFrom = "BRL";
+            transaction.CurrencyTo = "EUR";
             transaction.Value = 10;
 
             await TestClient.PostAsJsonAsync("api/v1/CurrencyConverter", transaction);
@@ -42,8 +42,8 @@ namespace CurrencyConverterUnitTests.IntegrationTests
         {
             TransactionCreateInputParams transaction = new TransactionCreateInputParams();
             transaction.ClientId = 1;
-            transaction.CurrencyTo = "BRL";
-            transaction.CurrencyFrom = "EUR";
+            transaction.CurrencyFrom = "BRL";
+            transaction.CurrencyTo = "EUR";
             transaction.Value = 10;
 
             var response = await TestClient.PostAsJsonAsync("api/v1/currencyconverter", transaction);
@@ -57,8 +57,8 @@ namespace CurrencyConverterUnitTests.IntegrationTests
         {
             TransactionCreateInputParams transaction = new TransactionCreateInputParams();
             transaction.ClientId = 0;
-            transaction.CurrencyTo = "BRL";
-            transaction.CurrencyFrom = "EUR";
+            transaction.CurrencyFrom = "BRL";
+            transaction.CurrencyTo = "EUR";
             transaction.Value = 10;
 
             var response = await TestClient.PostAsJsonAsync("api/v1/currencyconverter", transaction);
@@ -72,8 +72,8 @@ namespace CurrencyConverterUnitTests.IntegrationTests
         {
             TransactionCreateInputParams transaction = new TransactionCreateInputParams();
             transaction.ClientId = 1;
-            transaction.CurrencyTo = "ASD";
-            transaction.CurrencyFrom = "EUR";
+            transaction.CurrencyFrom = "ASD";
+            transaction.CurrencyTo = "EUR";
             transaction.Value = 10;
 
             var response = await TestClient.PostAsJsonAsync("api/v1/currencyconverter", transaction);
