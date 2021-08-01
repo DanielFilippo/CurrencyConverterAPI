@@ -21,7 +21,7 @@ jobs:
       run: dotnet build CurrencyConverterAPI.sln
 
     - name: Test
-      run: dotnet test CurrencyConverterTests\CurrencyConverterTests.csproj
+      run: dotnet test CurrencyConverterTests
 
     - name: Deploy
       env: 
