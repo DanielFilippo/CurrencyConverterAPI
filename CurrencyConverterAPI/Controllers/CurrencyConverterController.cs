@@ -22,7 +22,7 @@ namespace CurrencyConverterAPI.Controllers
             _logger = logger;
         }
         /// <summary>
-        /// Create a new Transaction, for the currencys you need to put in ISO 4217 format
+        /// Create a new Transaction, for the currencys you need to put in ISO 4217 format.
         /// </summary>
         /// <param name="input">Input parameters</param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace CurrencyConverterAPI.Controllers
         }
 
         /// <summary>
-        /// Get the client response by client id
+        /// Get the client response by client id.
         /// </summary>
         /// <param name="userId">Client Id</param>
         /// <returns></returns>
