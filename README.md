@@ -41,7 +41,7 @@ Once the account is created on the External API website, change the configuratio
 
 ![Alt text](https://raw.githubusercontent.com/DanielFilippo/CurrencyConverterAPI/master/CurrencyConverterAPI/docs/image_06.png)
 
-Altere o valor da propriedade "ACCESS_KEY" para o seu novo token de acesso, como mostrado na imagem acima
+Change the value of the "ACCESS_KEY" property to your new access token as shown in the image above
 
 ### Currency Converter API
 
